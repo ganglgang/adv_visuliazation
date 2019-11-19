@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<head>
+    <script src="js/echarts.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+
+    <h1 style="text-align:center;"> Interdependent Power and Transportation System</h1>
+
+    <div class="row">
+
+
+        <div class="col-6" style="background-color:lavender;">
+            <div class="form-group col-md-4">
+                <select class="btn btn-primary">
+                    <option>Power System</option>
+                </select>
+            </div>
+            <div id = "power"></div>
+                <div id = 'activeLoad' style="width: 50%; height: 280px; float:left; display: none;"></div>
+                <div id = 'voltage' style="width: 50%; height: 280px; float:left; display: none"></div>
+            <div id = 'table' style="width: 50%; height: 280px; float:left; display:block">
+
+                <table class="table table-sm">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Station</th>
+                        <th scope="col">System</th>
+                        <th scope="col">Bus Station</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>n2</td>
+                        <td>Old Town Transit Center</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>n13</td>
+                        <td>Kimball Junction Transit Center</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>n9</td>
+                        <td>Canyons Transit Hub</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>n33</td>
+                        <td>Jeremy Ranch Park & Ride</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>n25</td>
+                        <td>Kamas Park & Ride</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>n31</td>
+                        <td>Ecker Hill</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>n8</td>
+                        <td>Grand Summit</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id = 'charging' style="width: 50%;;height:260px; float:right; display: block;"></div>
+
+        </div>
+        <div class="col-6" style="background-image: url(image/backgound.jpg);background-size: 100% 100%;">
+            <div class="form-group col-md-12">
+                <select id='time'class="btn btn-primary" style = "float:left;">
+                    <option>Transportation </option>
+                </select>
+                <form style = "float:right;">
+                    Route:
+                    <input id = 'route' type="text" name="lastname" size="5">
+                    Bus:
+                    <input id = 'id' type="text" name="firstname" size="5">
+                    <button id ='s_veloctiy' type="button" class="btn btn-outline-secondary">Velocity: </button>
+                    <input id = 'velocity' type="text" name="lastname" size="5">mile/5min
+
+                </form>
+
+            </div>
+            <br>
+            <div id="transport"> </div>
+            <div id = 'BEBenergy' style="width: 50%; height: 280px; float:left; display: none;"></div>
+            <div id = 'BEBpower' style="width: 50%; height: 280px; float:left; display: none"></div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+<script>
+    n = ['Station1','Station2','Station3','Station4','Station5','Station6','Station7']
+    d3.selectAll("tr")
+        .on("mouseover", function(){
+            d3.select(this)
+                .style("background-color", "orange")
+                .style("cursor", "pointer");
+
+        })
+        .on("mouseout", function(){
+            d3.select(this)
+                .style("background-color", "lavender")
+                .style("cursor", "default");
+        })
+        .on('click',function(d,i){
+            chargingStation(n[i-1])
+        })
+</script>
+
+
+<script src = "js/powerSystem.js"></script>
+<script src = "js/Information.js"></script>
+<script src = 'js/powerPlot.js'></script>
+<script src = "js/transport.js"></script>
+<script src = "js/busplot.js"></script>
